@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Pedidos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="{{ url_for('static', filename='cart.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="/static/main.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='responsive.css') }}">
+
+</head>
+<body>    <div id="nav_cont" class="container">
+        <nav class="navbar navbar-expand-lg navbar-light custom-navbar d-flex justify-content-between  aaaa">
+            <div>
+                <div class="navbar-nav">
+                    <div class="nav-item dropdown" id="menu_drop">
+                        <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split btn_menu"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            <svg id="svg_menu" data-name="svg_menu" viewBox="12.916 15.249 30 24.62" width="30"
+                                height="24.62">
+                                <path
+                                    d="M41.465 30.021h-27.073c-1.476 0 -1.476 -1.009 -1.476 -2.462 0 -1.453 0 -2.462 1.476 -2.462h27.048c1.476 0 1.476 1.009 1.476 2.462 0 1.453 0 2.462 -1.476 2.462h0.025Zm0 -9.848h-27.073c-1.476 0 -1.476 -1.009 -1.476 -2.462s0 -2.462 1.476 -2.462h27.048c1.476 0 1.476 1.009 1.476 2.462s0 2.462 -1.476 2.462h0.025Zm-27.073 14.772h27.048c1.476 0 1.476 1.009 1.476 2.462 0 1.453 0 2.462 -1.476 2.462H14.392c-1.476 0 -1.476 -1.009 -1.476 -2.462 0 -1.453 0 -2.462 1.476 -2.462Z"
+                                    class="color000000 svgShape" style="fill: rgb(0, 115, 147);" />
+                            </svg>
+
+
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-left menu_dd">
+                            <a class="dropdown-item" id="menu_dd_1" href="/almoco">Home</a>
+                            <a class="dropdown-item" id="menu_dd_1" href="/checkorders">Pedidos</a>
+                            <a class="dropdown-item" id="menu_dd_1" href="/ordersrest">Restaurantes</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item d-flex justify-content-center align-items-center"><strong>{{ user
+                                    }}</strong></a>
+                            <a class="btn btn btn-danger btn-sm d-flex justify-content-center align-items-center"
+                                href="/logout" role="button" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if cart_count %}
+            <div class="cart_icon2">
+                {% if cart_count %}
+                <div id="cart_count">
+                    {{ cart_count }}
+                </div>{% endif %}
+                <a href="/cartlist" role="button">
+                    <svg data-name="Camada 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 22.583" width="25"
+                        height="22.583">
+                        <path
+                            d="M8.613 14.301c0.176 -0.325 0.521 -0.528 0.894 -0.528h8.952s1.043 -0.061 1.659 -0.989l4.72 -8.376c0.427 -0.758 0.007 -1.706 -0.84 -1.91h-0.041L5.708 2.492c-0.264 0 -0.508 -0.156 -0.616 -0.4L4.32 0.386a0.676 0.676 0 0 0 -0.616 -0.4H0.677C0.305 0 0 0.305 0 0.677v1.083c0 0.372 0.305 0.677 0.677 0.677h1.794l4.415 9.243c0.095 0.203 0.088 0.433 -0.027 0.63L5.525 14.626c-0.244 0.427 -0.413 0.887 -0.454 1.375 -0.061 0.752 0.122 1.754 1.3 2.472 0 0 0.135 0.142 0.677 0.251a2.254 2.254 0 0 0 1.585 3.86c1.246 0 2.255 -1.009 2.255 -2.255 0 -0.616 -0.251 -1.171 -0.65 -1.578h7.862c-0.4 0.406 -0.65 0.962 -0.65 1.578 0 1.246 1.009 2.255 2.255 2.255s2.255 -1.009 2.255 -2.255c0 -0.616 -0.251 -1.171 -0.65 -1.578h0.562c0.372 0 0.677 -0.305 0.677 -0.677v-1.097c0 -0.372 -0.305 -0.677 -0.677 -0.677H7.923s-0.278 -0.169 -0.156 -0.433l0.853 -1.564Z"
+                            style="fill:#fff" data-name="Camada 2" />
+                    </svg>
+                </a>
+
+            </div>{% endif %}
+    </div>
+    </nav>
+    </div></body>
+
+
+</div>
+<div class="background-image"></div>
+
+
+
+<section>
+    <container class="cart_list_table">
+        <div class="center">
+            <div class="container">
+                <br>
+                <div class="text-center">
+                    <img id="md_carrinho" src="/static/img/md_carrinho.png" class="rounded mx-auto d-block">
+                </div>
+                <br>
+
+                {% if orders_exist %}
+                {% for order in orders %}
+                <table class="table table-hover cart_list_table" id="list_table">
+                    <tbody>
+                        <tr>
+                            <thead>
+                            <th class="th_alingh">Nome</th>
+                            
+                            <td id="td_top" colspan="2" rowspan="1">{{ order.username }}<img id="icon_delete"
+                                    src="data:image/svg+xml,%3Csvg id='Camada_2' data-name='Camada 2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 31.383' width='25' height='31.383'%3E%3Cdefs%3E%3CclipPath id='clippath'%3E%3Cpath style='fill:none' d='M0 0h25v31.383H0z'/%3E%3C/clipPath%3E%3Cstyle%3E.cls-1%7Bstroke:%23dc2131;stroke-linecap:round;stroke-linejoin:round;stroke-width:3px;fill:none%7D%3C/style%3E%3C/defs%3E%3Cg style='clip-path:url(%23clippath)' id='Camada_2-2' data-name='Camada 2'%3E%3Cg id='Grupo_115' data-name='Grupo 115'%3E%3Cpath id='Retângulo_83' data-name='Retângulo 83' class='cls-1' d='M0.923 4.386h23.153v5.051H0.923z'/%3E%3Cpath id='Caminho_34' data-name='Caminho 34' class='cls-1' d='M6.836 3.693V0.923h11.248v2.77'/%3E%3Cpath id='Caminho_35' data-name='Caminho 35' class='cls-1' d='m2.761 10.245 2.415 20.215h14.631l2.433 -20.508'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"
+                                    onclick="deleteItem('{{ order.id }}')"></td>
+                                    </thead>
+                        </tr>
+                        <tr>
+                            <th class="th_alingh">Equipe</th>
+                            <td colspan="2" rowspan="1">{{ order.equipe }}</td>
+                        </tr>
+                        <tr>
+                            <th class="th_alingh">Restaurante</th>
+                            <th>Prato</th>
+                            <th>Prev Pedido</th>
+                        </tr>
+                        <tr>
+                            <td class="th_alingh">{{ order.restaurante }}</td>
+                            <td>{{ order.prato }}</td>
+                            <td>{{ order.horaentrega }}</td>
+                        </tr>
+                        <tr>
+                            <th id="td_bottom" class="th_alingh">Observação</th>
+                            <td class="text-break" colspan="2" rowspan="1">
+                                {% if order.informacao is not none %}
+                                {{ order.informacao }}
+                                {% else %}
+                                -
+                                {% endif %}
+                            
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                {% endfor %}
+                {% endif %}
+
+                <div class="btn-toolbar justify-content-end" role="toolbar">
+                    <a class="btn btn-primary btn_cart" href="/cart" role="button">ADICIONAR MAIS ITENS<br>AO
+                        CARRINHO</a>
+                    <form method="POST" action="/cartfood">
+                        <button class="btn btn-primary btn_cart" type="submit">FINALIZAR<br>PEDIDO</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </container>
+    <footer class="page-footer font-small">
+
+        <div class="footer text-center py-3">
+            <a href="https://medappsai.com/">
+            <img id="medapps_logo" src="/static/img/medappsai_logo.png" class="rounded mx-auto d-block"></a>
+        </div>
+        </div>
+    </footer>
+</section>
+
+<script>
+    flatpickr("#date", {
+        enableTime: false,
+        dateFormat: "Y-m-d"
+    });
+</script>
+</body>
+
+</html>

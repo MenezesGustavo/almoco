@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="{{ url_for('static', filename='cart.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="/static/main.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='responsive.css') }}">
+</head>
+
+<body class="body_carlist">
+    <div id="nav_cont" class="container">
+        <nav class="navbar navbar-expand-lg navbar-light custom-navbar d-flex justify-content-between  aaaa">
+            <div>
+                <div class="navbar-nav">
+                    <div class="nav-item dropdown" id="menu_drop">
+                        <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split btn_menu"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            <svg id="svg_menu" data-name="svg_menu" viewBox="12.916 15.249 30 24.62" width="30"
+                                height="24.62">
+                                <path
+                                    d="M41.465 30.021h-27.073c-1.476 0 -1.476 -1.009 -1.476 -2.462 0 -1.453 0 -2.462 1.476 -2.462h27.048c1.476 0 1.476 1.009 1.476 2.462 0 1.453 0 2.462 -1.476 2.462h0.025Zm0 -9.848h-27.073c-1.476 0 -1.476 -1.009 -1.476 -2.462s0 -2.462 1.476 -2.462h27.048c1.476 0 1.476 1.009 1.476 2.462s0 2.462 -1.476 2.462h0.025Zm-27.073 14.772h27.048c1.476 0 1.476 1.009 1.476 2.462 0 1.453 0 2.462 -1.476 2.462H14.392c-1.476 0 -1.476 -1.009 -1.476 -2.462 0 -1.453 0 -2.462 1.476 -2.462Z"
+                                    class="color000000 svgShape" style="fill: rgb(0, 115, 147);" />
+                            </svg>
+
+
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-left menu_dd">
+                            <a class="dropdown-item" id="menu_dd_1" href="/almoco">Home</a>
+                            <a class="dropdown-item" id="menu_dd_1" href="/checkorders">Pedidos</a>
+                            <a class="dropdown-item" id="menu_dd_1" href="/ordersrest">Restaurantes</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item d-flex justify-content-center align-items-center"><strong>{{ user
+                                    }}</strong></a>
+                            <a class="btn btn btn-danger btn-sm d-flex justify-content-center align-items-center"
+                                href="/logout" role="button" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if cart_count %}
+            <div class="cart_icon2">
+                {% if cart_count %}
+                <div id="cart_count">
+                    {{ cart_count }}
+                </div>{% endif %}
+                <a href="/cartlist" role="button">
+                    <svg data-name="Camada 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 22.583" width="25"
+                        height="22.583">
+                        <path
+                            d="M8.613 14.301c0.176 -0.325 0.521 -0.528 0.894 -0.528h8.952s1.043 -0.061 1.659 -0.989l4.72 -8.376c0.427 -0.758 0.007 -1.706 -0.84 -1.91h-0.041L5.708 2.492c-0.264 0 -0.508 -0.156 -0.616 -0.4L4.32 0.386a0.676 0.676 0 0 0 -0.616 -0.4H0.677C0.305 0 0 0.305 0 0.677v1.083c0 0.372 0.305 0.677 0.677 0.677h1.794l4.415 9.243c0.095 0.203 0.088 0.433 -0.027 0.63L5.525 14.626c-0.244 0.427 -0.413 0.887 -0.454 1.375 -0.061 0.752 0.122 1.754 1.3 2.472 0 0 0.135 0.142 0.677 0.251a2.254 2.254 0 0 0 1.585 3.86c1.246 0 2.255 -1.009 2.255 -2.255 0 -0.616 -0.251 -1.171 -0.65 -1.578h7.862c-0.4 0.406 -0.65 0.962 -0.65 1.578 0 1.246 1.009 2.255 2.255 2.255s2.255 -1.009 2.255 -2.255c0 -0.616 -0.251 -1.171 -0.65 -1.578h0.562c0.372 0 0.677 -0.305 0.677 -0.677v-1.097c0 -0.372 -0.305 -0.677 -0.677 -0.677H7.923s-0.278 -0.169 -0.156 -0.433l0.853 -1.564Z"
+                            style="fill:#fff" data-name="Camada 2" />
+                    </svg>
+                </a>
+
+            </div>{% endif %}
+    </div>
+    </nav>
+    
+    
+    <div class="background-image"></div>
+    <section>
+        <div class="cart_list_table">
+            <div class="center">
+                <div class="container">
+                    <br>
+                    <div class="text-center">
+                        <img id="md_carrinho" src="/static/img/md_pedidos.png" class="rounded mx-auto d-block">
+                    </div>
+                    <br>
+
+                    <div class="text-center check_date_form">
+                        <form method="POST">
+                            <label id="check_date1" for="date">CHECAR PEDIDOS </label><svg id="icon_calendar" width="25px" height="25px" viewBox="0 0 0.75 0.75" xmlns="http://www.w3.org/2000/svg" fill="none"><path fill="#27B1D8" d="M0.125 0.219v0.063h0.5V0.219A0.063 0.063 0 0 0 0.563 0.157h-0.375A0.063 0.063 0 0 0 0.125 0.219z"/><path stroke="#27B1D8" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.0625" d="M0.5 0.157h0.063A0.063 0.063 0 0 1 0.625 0.219v0.063h-0.5V0.219A0.063 0.063 0 0 1 0.188 0.157H0.25m0.25 0V0.093m0 0.063H0.25m0 -0.063v0.063M0.125 0.297v0.297a0.063 0.063 0 0 0 0.063 0.063h0.375A0.063 0.063 0 0 0 0.625 0.594V0.297"/></svg>
+                            <input type="text" id="date" name="date" placeholder="dd/mm/aaaa">
+                            <input id="btn_check_date" type="submit" value="CHECAR" >
+                        </form>
+                    </div>
+                    <br>
+                    {% if orders_exist %}
+                    {% for order in orders %}
+                    <table class="table table-hover cart_list_table" id="list_table">
+                        <tbody>
+                            <tr>
+                                <thead>
+                                    <th>Nome</th>
+                                    <td id="td_top" colspan="2" rowspan="1">{{ order.username }}</td>
+                                </thead>
+                            </tr>
+                            <tr>
+                                <th>Equipe</th>
+                                <td colspan="2" rowspan="1">{{ order.equipe }}</td>
+                            </tr>
+                            <tr>
+                                <th>Restaurante</th>
+                                <th>Prato</th>
+                                <th>Nro Pedido</th>
+                            </tr>
+                            <tr>
+                                <td>{{ order.restaurante }}</td>
+                                <td>{{ order.prato }}</td>
+                                <td>{{ order.pedidonumero }}</td>
+                            </tr>
+                            <tr>
+                                <th>Prev Pedido</th>
+                                <th>Hora do Pedido</th>
+                                <th>Entregue às</th>
+                            </tr>
+                            <tr>
+                                <td>{{ order.horaentrega }}</td>
+                                <td>{{ order.horapedido }}</td>
+                                <td class="th_alingh">
+                                    {% if order.entregarestaurante is not none %}
+                                    <strong>{{ order.entregarestaurante }}</strong>
+                                    {% else %}
+                                    <form>
+                                        <div class="form-group">
+                                            <label class="forms_data" for="entregueas">Hora de Entrega do Prato</label>
+                                            <select class="form-control cartform" name="entregueas" id="entregueas" class="form-control" required>
+                                                {% for time in times %}
+                                                <option value="{{ time }}">{{ time }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <svg viewBox="0.879 0.257 28.523 29.462" width="28.523" height="29.462"
+                                        onclick="updateDeliveryTime('{{ order.pedidonumero }}')">
+                                        <path
+                                            d="M14.953 14.637v12.281H10.98c-.094 0-.176-.059-.188-.152-.27-1.488-1.57-2.625-3.129-2.625s-2.859 1.137-3.129 2.625c-.012.082-.094.152-.188.152H1.711a.835.835 0 0 1-.832-.832V14.637h14.074zM27.258 27.34a2.38 2.38 0 0 1-4.758 0 2.38 2.38 0 0 1 4.758 0zm-1.465 0a.915.915 0 0 0-1.828 0c0 .504.41.914.914.914.492 0 .914-.41.914-.914zm-15.75 0c0 1.313-1.066 2.379-2.379 2.379s-2.391-1.067-2.391-2.379c0-1.313 1.066-2.379 2.379-2.379s2.391 1.066 2.391 2.379zm-1.477 0a.915.915 0 0 0-1.828 0 .915.915 0 0 0 1.828 0zm20.836-1.934v.645c0 .48-.387.879-.879.879h-.328c-.094 0-.176-.059-.188-.152a3.175 3.175 0 0 0-3.129-2.625 3.185 3.185 0 0 0-3.129 2.625c-.012.082-.094.152-.188.152H15.69V16.91h3.598c.246.012.492.117.668.281l3.855 4.16a.195.195 0 0 0 .141.059h3.375c.773 0 1.383.609 1.383 1.371v2.438h.504c.105 0 .188.082.188.188zm-7.301-4.324-2.789-3.07a.249.249 0 0 0-.152-.059h-2.227a.186.186 0 0 0-.188.188v3.082c0 .105.082.188.188.188h5.004a.2.2 0 0 0 .164-.328zm-4.23-14.039 4.676-4.676-1.066-1.055L20.415.257l-3.586 3.574-3.587 3.575-1.746-1.746c-.961-.961-1.781-1.746-1.816-1.746s-.551.492-1.148 1.078l-1.09 1.09 2.813 2.813c1.547 1.547 2.836 2.813 2.871 2.813.059 0 2.191-2.098 4.746-4.664z"
+                                            style="stroke-width:8px;stroke-dasharray:2px;fill-rule:nonzero;fill:#23A434" />
+                                    </svg>
+                                        </div>
+                                    </form>
+                                    
+
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th id="td_bottom" class="th_alingh">Observação</th>
+                                <td class="text-break" colspan="2" rowspan="1">
+                                    {% if order.informacao is not none %}
+                                    {{ order.informacao }}
+                                    {% else %}
+                                    -
+                                    {% endif %}
+                                
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {% endfor %}
+                    {% endif %}
+
+                    <div class="btn-toolbar justify-content-end" role="toolbar">
+                        <a class="btn btn-primary btn_cart" href="/cart" role="button">VOLTAR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </container>
+        
+    </section>
+
+    <script>
+        flatpickr("#date", {
+            enableTime: false,
+            dateFormat: "Y-m-d"
+        });
+    </script>
+</body>
+<footer class="page-footer font-small">
+
+    <div class="footer text-center py-3">
+        <a href="https://medappsai.com/">
+        <img id="medapps_logo" src="/static/img/medappsai_logo.png" class="rounded mx-auto d-block"></a>
+    </div>
+    </div>
+</footer>
+</html>

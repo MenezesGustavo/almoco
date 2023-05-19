@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login - almoco</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='responsive.css') }}">
+</head>
+
+<body>
+
+    <div class="row">
+        <div class="col-sm-7" id="container_imagem"></div>
+        <div class="col-sm-5 flex-fill align-self-center">
+
+            {% if error_message %}
+            <div class="alert alert-danger" role="alert">
+                {{ error_message }}
+            </div>
+            {% endif %}
+            <div>
+                <div class="align-self-center text-center">
+                    <div class="text-center">
+                        <img id="md_login" src="/static/img/md_login.png" class="rounded mx-auto d-block">
+                    </div>
+                    <div class="form-group">
+                        <form method="POST" action="/login">
+                            <div class="mb-2">
+
+                                <p class="forms_data">Usuário:</p>
+                                <div style="position: relative;">
+                                    <input class="form-control form_login" type="text" name="user" required>
+                                    <span
+                                        style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">
+                                        <svg width="24px" height="24px" viewBox="0 0 0.6 0.6"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="#27B1D8"
+                                                d="M0.3 0.317a0.135 0.135 0 1 0 0 -0.27 0.135 0.135 0 0 0 0 0.27Zm0 -0.317a0.18 0.18 0 0 1 0.091 0.335 0.294 0.294 0 0 1 0.209 0.242C0.602 0.589 0.594 0.598 0.582 0.6A0.021 0.021 0 0 1 0.558 0.582 0.255 0.255 0 0 0 0.302 0.362a0.258 0.258 0 0 0 -0.259 0.22 0.021 0.021 0 0 1 -0.023 0.018C0.008 0.598 -0.001 0.589 0.001 0.578A0.296 0.296 0 0 1 0.21 0.335 0.18 0.18 0 0 1 0.3 0Z" />
+                                        </svg>
+                                    </span>
+                                </div>
+                                <br>
+
+                                <p class="forms_data">Senha:</p>
+                                <div style="position: relative;">
+                                    <input class="form-control form_login" type="password" name="password" required>
+                                    <span
+                                        style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
+                                            height="24">
+                                            <path fill="#27B1D8"
+                                                d="M7.5 7.25V9h11a2.5 2.5 0 0 1 2.5 2.5v8a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 19.5v-8A2.5 2.5 0 0 1 5.5 9H6V7.25C6 3.845 8.503 1 12 1c2.792 0 4.971 1.825 5.718 4.31a.75.75 0 1 1-1.436.432C15.71 3.84 14.079 2.5 12 2.5c-2.578 0-4.5 2.08-4.5 4.75Zm-3 4.25v8a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-13a1 1 0 0 0-1 1Z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </div><br>
+                                <input type="submit" id="btn_login" class="btn btn-info" data-toggle="button"
+                                    aria-pressed="false" autocomplete="off" value="LOGIN">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div></div>
+
+
+
+
+</body>
+
+</html>
